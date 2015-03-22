@@ -9,7 +9,7 @@ describe 'linear search' do
 
   it 'returns the index of the target element if included in an unsorted array' do
     sorted_array = [1,5,6,4,9,3,7,8]
-    expect(linear_search(sorted_array, 6)).to eq(6)
+    expect(linear_search(sorted_array, 6)).to eq(2)
   end
 
   it 'returns -1 if the target element is not included in the array' do
