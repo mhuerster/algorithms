@@ -16,15 +16,7 @@ class SinglyLinkedNode
   end
 end
 
-class DoublyLinkedNode
-  attr_accessor :value, :prev_node, :next_node
-
-  def initialize(value)
-    @value = value
-  end
-end
-
-class LinkedList
+class SinglyLinkedList
   attr_accessor :size, :head
 
   def initialize
