@@ -181,9 +181,11 @@ class DoublyLinkedList
   end
 
   def delete_at_tail
-    @tail = @tail.prev_node
-    @tail.next_node = nil
+    old_tail = @tail
+    @tail = old_tail.prev_node
+    @tail.next_node = nil if @tail
     @size -= 1
+    return old_tail.value
   end
 
   def print_forward
