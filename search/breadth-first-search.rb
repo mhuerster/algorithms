@@ -8,16 +8,12 @@ class Graph
   def breadth_first_search(start_node)
     visited_nodes = {}
     nodes_to_visit = Queue.new
+    
     nodes_to_visit.enqueue(start_node)
-
-    while nodes_to_visit.size > 0
+    until nodes_to_visit.empty?
       node = nodes_to_visit.dequeue
       visited_nodes.store(node, true)
-      node.neighbors.each do |neighbor|
-        unless visited_nodes.has_key?(neighbor)
-          nodes_to_visit.enqueue(neighbor)
-        end
-      end
+      node.neighbors.each { |neighbor| nodes_to_visit.enqueue(neighbor) unless visited_nodes.has_key?(neighbor) }
     end
     visited_nodes.keys
   end
