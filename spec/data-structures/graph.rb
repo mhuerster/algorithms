@@ -4,8 +4,8 @@ require_relative '../../data-structures/graph'
 describe 'graph' do
 
   before(:each) do
-      @graph = Graph.new
-    end
+    @graph = Graph.new
+  end
   
   it 'is initialized empty' do
     expect(@graph.nodes).to be_empty
