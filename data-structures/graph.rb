@@ -1,8 +1,10 @@
 class Node
-  attr_accessor :value
+  attr_accessor :value, :neighbors
 
   def initialize(value)
     @value = value
+    # to avoid duplicates - see https://github.com/brianstorti/ruby-graph-algorithms/blob/master/breath_first_search/node.rb
+    @neighbors = Set.new
   end
 end
 
@@ -30,5 +32,7 @@ class Graph
   def add_edge(node1, node2)
     raise Exception.new('node must exist') unless nodes.include?(node1) && nodes.include?(node2)
     @edges << Edge.new(node1, node2)
+    node1.neighbors << node2
+    node2.neighbors << node1
   end
 end
