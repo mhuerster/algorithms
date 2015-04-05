@@ -39,21 +39,45 @@ class SinglyLinkedList
     @size += 1
   end
 
+  def delete_head
+    old_head = @head
+    @head = @head.next_node
+    @size -= 1
+    return old_head.value
+  end
+
+  def print
+    values = []
+    current_node = @head
+    until current_node.nil?
+      values << current_node.value
+      current_node = current_node.next_node
+    end
+    puts values.inspect
+    values
+  end
+
   def insert_at_tail(node)
+  # NB: not optimal - just implemented for practice
     insert_at_index(node, @size)
   end
 
   def insert_at_index(node, index)
-    insert_after = @head
-    counter = 0
-    while counter < index-1 do
-      insert_after = insert_after.next_node
-      counter +=1
+    # NB: not optimal - just implemented for practice
+    if @size == 0
+      insert_at_head(node)
+    else
+      insert_after = @head
+      counter = 0
+      while counter < index-1 do
+        insert_after = insert_after.next_node
+        counter +=1
+      end
+      temp = insert_after.next_node
+      insert_after.next_node = node
+      node.next_node = temp
+      @size += 1
     end
-    temp = insert_after.next_node
-    insert_after.next_node = node
-    node.next_node = temp
-    @size += 1
   end
 
   def value_at_index(index)
@@ -66,12 +90,9 @@ class SinglyLinkedList
     current_node.value
   end
 
-  def delete_head
-    @head = @head.next_node
-    @size -= 1
-  end
 
   def delete_at_index(index)
+    # NB: not optimal - just implemented for practice
     delete_after = @head
     counter = 0
     while counter < index-1 do
@@ -84,18 +105,8 @@ class SinglyLinkedList
   end
 
   def delete_at_tail
+    # NB: not optimal - just implemented for practice
     delete_at_index(@size-1)
-  end
-
-  def print
-    values = []
-    current_node = @head
-    until current_node.nil?
-      values << current_node.value
-      current_node = current_node.next_node
-    end
-    puts values.inspect
-    values
   end
 end
 
@@ -163,9 +174,11 @@ class DoublyLinkedList
   end
 
   def delete_head
+    old_head = @head
     @head = @head.next_node
-    @head.prev_node = nil
+    @head.prev_node = nil if @head
     @size -= 1
+    return old_head.value
   end
 
   def delete_at_index(index)
