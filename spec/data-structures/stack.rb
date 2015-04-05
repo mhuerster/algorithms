@@ -11,16 +11,18 @@ describe 'stack' do
     expect(@stack).to be_empty
   end
 
-  it 'can add an element at the tail' do
+  it 'can add an element at the head' do
     @stack.push(3)
-    expect(@stack.size).to eq(1)
-    expect(@stack.head).to eq(3)
+    @stack.push(4)
+    expect(@stack.size).to eq(2)
+    expect(@stack.peek).to eq(4)
   end
 
-  it 'can pop an element off the tail' do
+  it 'can pop an element off the head' do
     @stack.push(3)
+    @stack.push(4)
+    expect(@stack.size).to eq(2)
+    expect(@stack.pop).to eq(4)
     expect(@stack.size).to eq(1)
-    expect(@stack.pop).to eq(3)
-    expect(@stack).to be_empty
   end
 end
